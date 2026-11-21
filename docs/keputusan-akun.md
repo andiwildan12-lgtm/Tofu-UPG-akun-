@@ -22,8 +22,10 @@ Hanya keputusan yang sudah disetujui Dir, dengan kutipan dan tanggal.
 | Kredit ElevenLabs | Boleh untuk uji suara Dany + contoh backsound | Dir: "3. Ok" (21 Nov 2026) |
 | Filter | antislop mode during untuk visual, naskah, caption | Dir minta (21 Nov 2026) |
 
+| Gaya visual | **C "Berkas Rahasia"**: krem + map dokumen + stempel RAHASIA + nomor berkas (`desain/gaya-visual-v1/`) | Dir: "gaya C ok" (21 Nov 2026) |
+| Backsound | **A "misteri jenaka"** (`audio/uji/backsound-A-misteri-jenaka.mp3`, ElevenLabs Music, tanpa vokal, dicek transkripsi) | Dir: "A" (21 Nov 2026) |
+| Gaya suara Dany | **Take 2** (`audio/uji/uji-suara-dany-take2.mp3`), eleven_v4 dengan tag emosi | Dir: "take 2" (21 Nov 2026) |
+
 ## Belum diputuskan
-- Gaya visual final (A/B/C; rekomendasi Claude: C "Berkas Rahasia")
 - Desain tokoh "orang dalam"
-- Pilihan backsound dan hasil uji suara Dany
 - Daftar alat/teknologi UPG yang boleh tampil (untuk pilar D)
