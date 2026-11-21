@@ -13,8 +13,17 @@ Hanya keputusan yang sudah disetujui Dir, dengan kutipan dan tanggal.
 | Suara narator | **Dany Saputra** (ElevenLabs `x5tvfc5X0Qh4cqmLpgrs`). Bukan Denas (suara akun UPG utama) | Dir: "2. Ok" (21 Nov 2026) |
 | Audio | Backsound pelan bernuansa misteri **boleh**; SFX boleh; **tanpa musik bervokal/nyanyian** | Dir: "3. Boleh … bisa pakai sound effect tapi intinya jgn latar music yang menyanyi" (21 Nov 2026) |
 
+| Identitas akun | Diserahkan ke Claude; hasil di `docs/identitas-akun.md` (Rahasia Kursi Dokter Gigi, @rahasiakursi.upg) | Dir: "Identitas akun saya serahkan ke kau saja" (21 Nov 2026) |
+| Bank topik | 10 topik dulu (`docs/bank-topik-v1.md`) | Dir: "bisa kita bikin 10 topik dulu" (21 Nov 2026) |
+| Cek fakta | Dir sendiri, manual, **dilakukan saat ACC rancangan per video** (bukan cek bank sekaligus) | Dir: "periksa fakta tetap saya" · "cek fakta nanti pas di acc brief aja, biar gak lama" (21 Nov 2026) |
+| Alur serah | Manual dulu: Claude buat MP4 + cover + caption, tim simpan dan unggah sendiri. Otomatisasi menyusul | Dir (21 Nov 2026) |
+| Tokoh tetap | **Pakai** tokoh "orang dalam" (tanpa mata, sesuai aturan visual) | Dir: "1. Ok" (21 Nov 2026) |
+| Label AI TikTok | Ikuti aturan TikTok apa adanya | Dir: "2. Apa adanya aja gpp" (21 Nov 2026) |
+| Kredit ElevenLabs | Boleh untuk uji suara Dany + contoh backsound | Dir: "3. Ok" (21 Nov 2026) |
+| Filter | antislop mode during untuk visual, naskah, caption | Dir minta (21 Nov 2026) |
+
 ## Belum diputuskan
-- Nama akun dan handle
-- drg yang memvalidasi fakta
+- Gaya visual final (A/B/C; rekomendasi Claude: C "Berkas Rahasia")
+- Desain tokoh "orang dalam"
+- Pilihan backsound dan hasil uji suara Dany
 - Daftar alat/teknologi UPG yang boleh tampil (untuk pilar D)
-- ACC per video atau per batch naskah
