@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>Cover Rahasia 01</title>
+<link rel="stylesheet" href="kit.css"></head><body>
+<div class="f" id="f"></div>
+<script src="kit.js"></script>
+<script>
+// Cover seri: nomor berkas besar + judul <= 6 kata + stempel. Teks di area aman (y 250-1520, kanan 120 px).
+document.getElementById('f').innerHTML=`<img class="logo" src="logo-upg-transparan.png">
+ ${folderBlock('BERKAS #01',470,900)}
+ <div class="paper" style="left:120px;right:180px;top:530px;height:800px">
+  <div class="typed" style="font-size:40px">RAHASIA #01</div>
+  <div style="font-weight:900;font-size:118px;line-height:1.08;margin-top:34px">Kenapa klinik gigi bau <span class="pill">cengkeh?</span></div></div>
+ <div class="stamp" style="left:380px;top:1200px;font-size:50px;transform:rotate(-8deg)">RAHASIA KURSI<br>DOKTER GIGI</div>
+ <svg class="abs" style="left:140px;top:1185px" width="300" height="220">${wisp(90,100,.55)}${wisp(170,110,.45)}${clove(90,150,.45)}${clove(170,160,.42)}</svg>`;
+</script></body></html>

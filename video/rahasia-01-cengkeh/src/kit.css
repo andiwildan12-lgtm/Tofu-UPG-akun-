@@ -1,0 +1,27 @@
+/* Kit visual akun Rahasia Kursi Dokter Gigi (gaya C, Berkas Rahasia) */
+
+@font-face{font-family:Nunito;font-weight:600;src:url(nunito-latin-600-normal.woff2)}
+@font-face{font-family:Nunito;font-weight:800;src:url(nunito-latin-800-normal.woff2)}
+@font-face{font-family:Nunito;font-weight:900;src:url(nunito-latin-900-normal.woff2)}
+@font-face{font-family:Courier Prime;font-weight:700;src:url(courier-prime-latin-700-normal.woff2)}
+:root{--krem:#FFF7EF;--map:#F6E3CC;--or:#FA7209;--ortua:#CF6515;--gelap:#2A2A2A;--coklat:#7A3608;--amber:#F8C000;--tua:#F1DDBF}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:Nunito,sans-serif;color:var(--gelap)}
+.f{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--krem)}
+/* tekstur kertas tipis: identitas "berkas", bukan dekorasi */
+.f::before{content:"";position:absolute;inset:0;opacity:.35;pointer-events:none;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .48  0 0 0 0 .21  0 0 0 0 .03  0 0 0 .09 0'/></filter><rect width='300' height='300' filter='url(%23n)'/></svg>")}
+.logo{position:absolute;left:80px;top:250px;width:120px;z-index:5}
+.abs{position:absolute}
+.tab{position:absolute;height:64px;background:var(--map);border:5px solid var(--ortua);border-bottom:none;border-radius:22px 22px 0 0;font-family:'Courier Prime';font-weight:700;font-size:32px;color:var(--coklat);padding:12px 26px}
+.folder{position:absolute;background:var(--map);border:5px solid var(--ortua);border-radius:0 26px 26px 26px}
+.paper{position:absolute;background:#fff;box-shadow:0 6px 0 rgba(122,54,8,.08);padding:48px}
+.typed{font-family:'Courier Prime';font-weight:700;color:var(--ortua);font-size:32px;letter-spacing:1px}
+.h{font-weight:900;font-size:86px;line-height:1.12}
+.h2{font-weight:900;font-size:72px;line-height:1.15}
+.pill{display:inline-block;background:var(--or);color:var(--gelap);padding:0 24px;border-radius:22px}
+.stamp{position:absolute;font-weight:900;color:var(--ortua);border:9px solid var(--ortua);border-radius:18px;padding:8px 28px;letter-spacing:4px;line-height:1.05;text-align:center;
+ -webkit-mask-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200'><filter id='g'><feTurbulence baseFrequency='.55' numOctaves='2'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.4 1.75'/></filter><rect width='400' height='200' filter='url(%23g)'/></svg>");-webkit-mask-size:400px 200px}
+.sub{position:absolute;left:80px;right:140px;top:1410px;text-align:center;font-weight:800;font-size:40px;line-height:1.3;color:var(--gelap)}
+.label{font-weight:800;font-size:44px;text-anchor:middle;fill:var(--gelap);font-family:Nunito}
+.cap{position:absolute;left:80px;right:140px;font-weight:800;font-size:46px;line-height:1.25}
