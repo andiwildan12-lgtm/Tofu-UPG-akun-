@@ -26,6 +26,9 @@ Hanya keputusan yang sudah disetujui Dir, dengan kutipan dan tanggal.
 | Backsound | **A "misteri jenaka"** (`audio/uji/backsound-A-misteri-jenaka.mp3`, ElevenLabs Music, tanpa vokal, dicek transkripsi) | Dir: "A" (21 Nov 2026) |
 | Gaya suara Dany | **Take 2** (`audio/uji/uji-suara-dany-take2.mp3`), eleven_v4 dengan tag emosi | Dir: "take 2" (21 Nov 2026) |
 
+| CTA penutup | **Setiap video** ditutup dengan ajakan **follow + komen** (mis. "rahasia apa lagi yang mau kamu tahu?" / "menurutmu gimana?"), supaya tim bisa berinteraksi dengan yang berkomentar. Menggantikan aturan panduan "1 ajakan" untuk akun ini | Dir: "jangan lupa selalu di akhir ada CTA, follow, komen…" (21 Nov 2026) |
+| Video pertama | Sekaligus memperkenalkan akun | Dir (21 Nov 2026) |
+
 ## Belum diputuskan
 - Desain tokoh "orang dalam"
 - Daftar alat/teknologi UPG yang boleh tampil (untuk pilar D)
