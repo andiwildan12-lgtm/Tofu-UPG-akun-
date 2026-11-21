@@ -1,0 +1,81 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Nunito;font-weight:600;src:url(nunito-latin-600-normal.woff2)}
+@font-face{font-family:Nunito;font-weight:800;src:url(nunito-latin-800-normal.woff2)}
+@font-face{font-family:Nunito;font-weight:900;src:url(nunito-latin-900-normal.woff2)}
+@font-face{font-family:Courier Prime;font-weight:700;src:url(courier-prime-latin-700-normal.woff2)}
+:root{--krem:#FFF7EF;--or:#FA7209;--ortua:#CF6515;--gelap:#2A2A2A;--coklat:#7A3608}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:Nunito,sans-serif}
+.f{position:relative;width:1080px;height:1920px;overflow:hidden}
+.logo{position:absolute;left:80px;top:250px;width:120px}
+.series{position:absolute;right:140px;top:290px;font-weight:900;font-size:40px;letter-spacing:2px}
+.title{position:absolute;left:80px;right:140px;font-weight:900;font-size:96px;line-height:1.12}
+.pill{display:inline-block;background:var(--or);color:var(--gelap);padding:0 26px;border-radius:24px}
+.sub{position:absolute;left:80px;right:140px;top:1380px;font-weight:800;font-size:48px;line-height:1.3;text-align:center}
+.art{position:absolute;left:0;right:120px}
+/* A krem hangat */
+.A{background:var(--krem);color:var(--gelap)}
+.A .series{color:var(--ortua)}
+/* B gelap misteri */
+.B{background:radial-gradient(ellipse 70% 45% at 50% 52%,#4a3a2e 0%,#2A2A2A 62%,#1d1d1d 100%);color:var(--krem)}
+.B .series{color:var(--or)}
+.B .sub{color:var(--krem)}
+/* C berkas rahasia */
+.C{background:var(--krem);color:var(--gelap)}
+.C .folder{position:absolute;left:60px;right:140px;top:470px;height:860px;background:#F6E3CC;border-radius:0 28px 28px 28px;border:4px solid var(--ortua)}
+.C .tab{position:absolute;left:56px;top:420px;width:330px;height:60px;background:#F6E3CC;border:4px solid var(--ortua);border-bottom:none;border-radius:24px 24px 0 0;font-family:'Courier Prime';font-weight:700;font-size:30px;color:var(--coklat);padding:12px 24px}
+.C .paper{position:absolute;left:100px;right:180px;top:520px;height:760px;background:#fff;box-shadow:0 6px 0 rgba(0,0,0,.06);padding:44px}
+.C .typed{font-family:'Courier Prime';font-weight:700;color:var(--gelap)}
+.stamp{position:absolute;font-weight:900;color:var(--ortua);border:8px solid var(--ortua);border-radius:16px;padding:6px 26px;transform:rotate(-9deg);letter-spacing:4px;opacity:.92}
+</style></head><body>
+<div id="root"></div>
+<script>
+const P=new URLSearchParams(location.search), O=P.get('o')||'A', N=P.get('n')||'1';
+const dark=O==='B';
+const clove=(x,y,s,col)=>`<g transform="translate(${x},${y}) scale(${s})">
+ <path d="M-14 0 L14 0 L6 230 Q0 244 -6 230 Z" fill="${col}"/>
+ <g fill="${col}"><path d="M0 4 Q-46 -10 -58 -52 Q-22 -46 0 -14Z"/><path d="M0 4 Q46 -10 58 -52 Q22 -46 0 -14Z"/>
+ <path d="M-8 0 Q-30 -40 -14 -70 Q2 -40 8 0Z"/><path d="M8 0 Q30 -40 14 -70 Q-2 -40 -8 0Z"/></g>
+ <circle cx="0" cy="-62" r="34" fill="${col}"/><circle cx="-10" cy="-72" r="10" fill="#fff" opacity=".18"/></g>`;
+const tooth=(x,y,s,fill,stroke)=>`<g transform="translate(${x},${y}) scale(${s})"><path d="M-60 -70 C-110 -70 -110 10 -80 40 C-65 60 -70 120 -45 125 C-20 130 -20 50 0 50 C20 50 20 130 45 125 C70 120 65 60 80 40 C110 10 110 -70 60 -70 C30 -70 20 -55 0 -55 C-20 -55 -30 -70 -60 -70Z" fill="${fill}" stroke="${stroke}" stroke-width="9"/></g>`;
+const wisps=(col)=>[330,470,600].map((x,i)=>`<path d="M${x} 190 q-36 -45 0 -90 q36 -45 0 -90" fill="none" stroke="${col}" stroke-width="12" stroke-linecap="round" opacity="${.6-i*.1}"/>`).join('');
+const brown=dark?'#B5652A':'#7A3608';
+let h='';
+if(N==='1'){ // HOOK
+  const art=`<svg class="art" style="top:860px" width="960" height="560" viewBox="0 0 960 560">
+    ${wisps(dark?'#FFF7EF':'#CF6515')}
+    ${clove(330,290,1.1,brown)}${clove(470,300,1.0,brown)}${clove(600,290,1.05,brown)}</svg>`;
+  if(O==='C'){
+    h=`<div class="tab">BERKAS #01</div><div class="folder"></div><div class="paper">
+      <div class="typed" style="font-size:34px;color:#CF6515;margin-bottom:26px">RAHASIA KURSI DOKTER GIGI</div>
+      <div style="font-weight:900;font-size:84px;line-height:1.12">Kenapa klinik gigi selalu bau <span class="pill">cengkeh?</span></div></div>
+      <div class="stamp" style="left:560px;top:1150px;font-size:56px">RAHASIA</div>
+      <svg class="art" style="top:1000px;left:120px" width="400" height="280" viewBox="0 0 400 280">${clove(120,110,.6,brown)}${clove(220,120,.55,brown)}</svg>`;
+  } else {
+    h=`<div class="series">RAHASIA #01</div>
+      <div class="title" style="top:470px">Kenapa klinik gigi selalu bau <span class="pill">cengkeh?</span></div>${art}`;
+  }
+} else { // ISI
+  const art=`<svg class="art" style="top:${O==='C'?760:640}px;${O==='C'?'left:110px;transform:scale(.8);transform-origin:left top;':''}" width="960" height="620" viewBox="0 0 960 620">
+    ${clove(170,230,.95,brown)}
+    <path d="M270 260 H390" stroke="${dark?'#FFF7EF':'#2A2A2A'}" stroke-width="10" stroke-linecap="round"/><path d="M372 236 L398 260 L372 284" fill="none" stroke="${dark?'#FFF7EF':'#2A2A2A'}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(500,140)"><rect x="-6" y="-40" width="72" height="44" rx="8" fill="${dark?'#FFF7EF':'#2A2A2A'}"/><rect x="-40" y="0" width="140" height="210" rx="34" fill="#F8C000" opacity=".9"/><rect x="-14" y="80" width="88" height="70" rx="10" fill="#FFF7EF"/></g>
+    <path d="M640 260 H740" stroke="${dark?'#FFF7EF':'#2A2A2A'}" stroke-width="10" stroke-linecap="round"/><path d="M722 236 L748 260 L722 284" fill="none" stroke="${dark?'#FFF7EF':'#2A2A2A'}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    ${tooth(840,250,.95,dark?'#FFF7EF':'#ffffff',dark?'#FFF7EF':'#2A2A2A')}<circle cx="840" cy="220" r="22" fill="#F8C000"/>
+    <text x="170" y="540" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="40" fill="${dark?'#FFF7EF':'#2A2A2A'}">cengkeh</text>
+    <text x="530" y="540" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="40" fill="${dark?'#FFF7EF':'#2A2A2A'}">eugenol</text>
+    <text x="840" y="540" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="40" fill="${dark?'#FFF7EF':'#2A2A2A'}">bahan gigi</text></svg>`;
+  const t=`Itu bau <span class="pill">eugenol</span>`;
+  if(O==='C'){
+    h=`<div class="tab">BERKAS #01</div><div class="folder"></div><div class="paper">
+       <div class="typed" style="font-size:30px;color:#CF6515">TEMUAN:</div>
+       <div style="font-weight:900;font-size:80px;margin-top:10px">${t}</div></div>${art}`;
+  } else {
+    h=`<div class="series">RAHASIA #01</div><div class="title" style="top:460px">${t}</div>${art}`;
+  }
+  h+=`<div class="sub">Zat dari cengkeh ini dipakai<br>di bahan gigi sejak lama</div>`;
+}
+document.getElementById('root').innerHTML=`<div class="f ${O}"><img class="logo" src="${dark?'logo-upg-putih.png':'logo-upg-transparan.png'}">${h}</div>`;
+</script></body></html>
