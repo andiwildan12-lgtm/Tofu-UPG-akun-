@@ -1,3 +1,5 @@
+> **Status: akun dihentikan (Dir, 22 Nov 2026). Fokus ke akun resmi UPG Dental Care.** Isi di bawah disimpan sebagai arsip.
+
 # Keputusan akun TikTok TOFU UPG
 
 Hanya keputusan yang sudah disetujui Dir, dengan kutipan dan tanggal.
