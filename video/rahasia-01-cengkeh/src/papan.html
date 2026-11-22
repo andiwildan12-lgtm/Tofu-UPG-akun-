@@ -116,6 +116,33 @@ const S={
   <path d="M158 255 C200 238 320 238 362 255 L350 320 C320 350 200 350 170 320Z" fill="#fff" stroke="${C.gelap}" stroke-width="6"/>
   <path d="M175 270 H345 M180 295 H340" stroke="${C.gelap}" stroke-width="3" opacity=".35"/></svg>
  <div class="cap abs" style="top:1330px;font-size:38px;color:${C.coklat};text-align:center">Varian 2 (pembanding):<br>siluet bermasker, area mata polos</div>`
+,11:()=>`${logo}<div class="h2 abs" style="left:80px;right:140px;top:460px">Diteteskan ke <span class="pill">kapas</span></div>
+ <svg class="abs" style="left:0;top:700px" width="960" height="660">
+  <g transform="translate(470,40) rotate(8)"><rect x="-22" y="0" width="44" height="210" rx="10" fill="#fff" stroke="${C.gelap}" stroke-width="7"/><rect x="-16" y="120" width="32" height="84" rx="6" fill="${C.amber}" opacity=".85"/><path d="M-8 208 L0 250 L8 208" fill="#fff" stroke="${C.gelap}" stroke-width="7" stroke-linejoin="round"/><rect x="-34" y="-110" width="68" height="120" rx="30" fill="${C.ortua}" stroke="${C.gelap}" stroke-width="7"/></g>
+  ${drop(440,330,.42)}
+  <g transform="translate(450,470)"><path d="M-95 20 C-120 -15 -85 -55 -50 -45 C-40 -80 10 -85 25 -55 C60 -75 105 -45 92 -10 C125 5 110 55 70 52 C55 80 -5 82 -25 58 C-60 75 -110 55 -95 20Z" fill="#fff" stroke="${C.gelap}" stroke-width="7"/><path d="M-40 10 C-10 30 30 25 50 5" stroke="${C.amber}" stroke-width="14" fill="none" stroke-linecap="round" opacity=".8"/></g>
+  <text x="450" y="620" class="label">kapas kecil</text></svg>
+ ${sub('Kalau ada gigi berlubang<br>yang lagi nyeri,')}`
+,12:()=>`${logo}<div class="h2 abs" style="left:80px;right:140px;top:460px">Diletakkan di <span class="pill">lubang gigi</span></div>
+ <svg class="abs" style="left:0;top:690px" width="960" height="680">
+  ${tooth(470,430,2.3,`<path d="M-30 -40 C-30 10 -22 60 -30 100 M30 -40 C30 10 22 60 30 100" stroke="${C.ortua}" stroke-width="5" fill="none" opacity=".5"/><path d="M-26 -62 L-18 -30 L18 -30 L26 -62 Z" fill="${C.krem}" stroke="${C.gelap}" stroke-width="5" stroke-linejoin="round"/>`)}
+  <g transform="translate(470,170)"><path d="M-34 0 C-42 -22 -18 -38 0 -30 C18 -40 42 -22 34 0 C40 20 -40 20 -34 0Z" fill="#fff" stroke="${C.gelap}" stroke-width="6"/><path d="M-12 -32 L-60 -250 M12 -32 L60 -250" stroke="${C.gelap}" stroke-width="10" stroke-linecap="round"/></g>
+  <path d="M470 215 V255" stroke="${C.gelap}" stroke-width="6" stroke-dasharray="4 14" stroke-linecap="round"/>
+  <text x="800" y="140" class="label" style="font-size:38px">dikeringkan</text><text x="800" y="184" class="label" style="font-size:38px">sedikit dulu</text></svg>
+ ${sub('Kapasnya dikeringkan sedikit,<br>lalu diletakkan di dalam lubang gigi.')}`
+,13:()=>`${logo}<div class="h2 abs" style="left:80px;right:140px;top:460px">Ditutup, lalu <span class="pill">meredakan nyeri</span></div>
+ <svg class="abs" style="left:0;top:740px" width="960" height="620">
+  ${tooth(470,330,2.3,`<path d="M-30 -40 C-30 10 -22 60 -30 100 M30 -40 C30 10 22 60 30 100" stroke="${C.ortua}" stroke-width="5" fill="none" opacity=".5"/><path d="M0 -26 C-6 0 6 30 0 70" stroke="${C.or}" stroke-width="7" fill="none" stroke-linecap="round"/><path d="M-26 -62 L-18 -30 L18 -30 L26 -62 Z" fill="#FFF3C4" stroke="${C.gelap}" stroke-width="4"/><path d="M-14 -40 C-8 -46 8 -46 14 -40 C10 -34 -10 -34 -14 -40Z" fill="${C.amber}" opacity=".7"/><path d="M-30 -66 C-12 -54 12 -54 30 -66 L26 -50 C10 -44 -10 -44 -26 -50Z" fill="#D9C7AE" stroke="${C.gelap}" stroke-width="4"/>`)}
+  <path d="M545 190 L720 110" stroke="${C.gelap}" stroke-width="6" stroke-linecap="round"/><text x="800" y="100" class="label" style="font-size:38px">tambalan</text><text x="800" y="144" class="label" style="font-size:38px">sementara</text>
+  <path d="M520 240 L720 300" stroke="${C.gelap}" stroke-width="6" stroke-linecap="round"/><text x="800" y="290" class="label" style="font-size:38px">kapas</text><text x="800" y="334" class="label" style="font-size:38px">+ eugenol</text></svg>
+ ${sub('Setelah itu ditutup tambalan sementara.<br>Eugenol membantu meredakan nyerinya.')}`
+,14:()=>`${logo}<div class="h2 abs" style="left:80px;right:140px;top:460px">Itu bau yang <span class="pill">kamu cium</span></div>
+ <svg class="abs" style="left:0;top:700px" width="960" height="700">
+  ${[[200,520,.55],[330,470,.5],[470,440,.6],[610,470,.5],[760,520,.45],[400,330,.35],[560,320,.35]].map(([x,y,o])=>wisp(x,y,o)).join('')}
+  ${tooth(470,580,1.1)}</svg>
+ <div class="stamp" style="left:590px;top:1250px;font-size:46px;transform:rotate(-9deg)">TERJAWAB</div>
+ ${sub('Nah, setiap kali dipakai,<br>aromanya menyebar ke ruangan.')}`
+
 };
 const n=new URLSearchParams(location.search).get('s')||'1';
 document.getElementById('root').innerHTML=`<div class="f">${S[n]()}</div>`;
