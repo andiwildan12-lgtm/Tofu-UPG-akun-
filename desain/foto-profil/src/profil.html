@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>Foto profil</title>
+<style>
+@font-face{font-family:Nunito;font-weight:900;src:url(nunito-latin-900-normal.woff2)}
+@font-face{font-family:'Courier Prime';font-weight:700;src:url(courier-prime-latin-700-normal.woff2)}
+html,body{margin:0;width:1080px;height:1080px;overflow:hidden}
+svg{display:block}
+</style></head><body><div id="r"></div>
+<script src="kit.js"></script>
+<script>
+// Foto profil 1080x1080. Isi penting di dalam lingkaran tengah (profil dipotong bulat).
+const o=new URLSearchParams(location.search).get('o')||'A';
+const ink='#CF6515', inkFilter=`<filter id="ink"><feTurbulence baseFrequency=".6" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -2.2 1.7"/><feComposite in="SourceGraphic" operator="in"/></filter>`;
+const ringText=(txt,r,size)=>`<defs><path id="ring" d="M540 ${540+r} A${r} ${r} 0 1 1 540.1 ${540+r}"/></defs><text font-family="Nunito" font-weight="900" font-size="${size}" fill="${ink}" letter-spacing="10" filter="url(#ink)"><textPath href="#ring" startOffset="50%" text-anchor="middle">${txt}</textPath></text>`;
+const toothBig=(x,y,s)=>`<g transform="translate(${x},${y}) scale(${s})"><path d="${toothPath}" fill="#fff" stroke="${C.gelap}" stroke-width="8" stroke-linejoin="round"/></g>`;
+const V={
+// A: cap bulat "RAHASIA KURSI DOKTER GIGI" melingkari logo UPG asli
+A:`<svg width="1080" height="1080"><defs>${inkFilter}</defs><rect width="1080" height="1080" fill="#FFF7EF"/>
+  <circle cx="540" cy="540" r="430" fill="none" stroke="${ink}" stroke-width="16" filter="url(#ink)"/>
+  <circle cx="540" cy="540" r="318" fill="none" stroke="${ink}" stroke-width="8" filter="url(#ink)"/>
+  ${ringText('• RAHASIA KURSI DOKTER GIGI •',372,62)}
+  <image href="logo-upg-transparan.png" x="400" y="380" width="280" height="320"/></svg>`,
+// B: map berkas + gigi + stempel RAHASIA (ikon seri)
+B:`<svg width="1080" height="1080"><defs>${inkFilter}</defs><rect width="1080" height="1080" fill="#FFF7EF"/>
+  <path d="M230 330 h220 l40 50 h360 a30 30 0 0 1 30 30 v380 a30 30 0 0 1 -30 30 h-620 a30 30 0 0 1 -30 -30 v-430 a30 30 0 0 1 30 -30z" fill="#F6E3CC" stroke="${ink}" stroke-width="14" stroke-linejoin="round"/>
+  ${toothBig(540,560,2.2)}
+  <g transform="translate(540,760) rotate(-8)" filter="url(#ink)"><rect x="-250" y="-62" width="500" height="124" rx="20" fill="none" stroke="${ink}" stroke-width="14"/><text y="30" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="86" letter-spacing="8" fill="${ink}">RAHASIA</text></g></svg>`,
+// C: oranye UPG, gigi putih dengan stempel; teks gelap (kontras panduan)
+C:`<svg width="1080" height="1080"><defs>${inkFilter}</defs><rect width="1080" height="1080" fill="#FA7209"/>
+  ${toothBig(540,500,2.6)}
+  <g transform="translate(540,800) rotate(-7)"><rect x="-260" y="-64" width="520" height="128" rx="20" fill="#FFF7EF" stroke="#2A2A2A" stroke-width="12"/><text y="30" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="86" letter-spacing="8" fill="#2A2A2A">RAHASIA</text></g></svg>`
+};
+document.getElementById('r').innerHTML=V[o];
+</script></body></html>
