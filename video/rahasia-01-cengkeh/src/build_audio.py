@@ -5,21 +5,29 @@ import pathlib, subprocess
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 REPO = ROOT.parents[1]
 SFX = REPO / ".claude/skills/upg-video/assets/sfx"
-DUR = 49.0
-LINES = [0.30, 4.60, 10.60, 14.95, 18.95, 23.70, 28.05, 35.30, 41.05, 43.30]  # L01..L10
+DUR = 57.0
+# (file narasi, waktu mulai) · V2: baris tetap memakai audio v1, baris baru dari audio v2
+LINES = [("v1/L01", 0.30), ("v1/L02", 4.60), ("v1/L03", 10.60), ("v1/L04", 14.95),
+         ("v2/N05", 18.95), ("v2/N06", 24.65), ("v2/N07", 29.30), ("v2/N08", 34.85),
+         ("v2/N09", 42.25), ("v1/L10", 45.75), ("v2/N11", 50.30), ("v1/L09", 53.80)]
+ST = ROOT / "audio/v1/stempel-a.mp3"
 # (file, waktu, gain dB)
 EVENTS = [
-    (SFX / "typing.mp3", 0.05, 4), (ROOT / "audio/v1/stempel-a.mp3", 4.38, 0),
+    (SFX / "typing.mp3", 0.05, 4), (ST, 4.38, 0),
     (SFX / "swish.mp3", 10.45, -9), (SFX / "whoosh.mp3", 14.80, -6),
-    (SFX / "pop.mp3", 19.85, 0), (SFX / "swish.mp3", 27.90, -9),
-    (SFX / "whoosh.mp3", 35.15, -6), (ROOT / "audio/v1/stempel-a.mp3", 37.51, 0),
-    (SFX / "pop.mp3", 41.05, -2), (SFX / "ding.mp3", 43.40, -10),
+    (SFX / "whoosh.mp3", 18.80, -9), (SFX / "pop.mp3", 21.80, -2),      # tetes jatuh ke kapas
+    (SFX / "click.mp3", 27.50, 2),                                      # kapas masuk lubang
+    (SFX / "pop.mp3", 29.95, -2),                                       # tambalan menutup
+    (SFX / "whoosh.mp3", 34.70, -9), (ST, 39.96, 0),                    # TERJAWAB
+    (SFX / "whoosh.mp3", 42.00, -6), (ST, 44.06, 0),                    # KAMU YANG TENTUKAN
+    (SFX / "pop.mp3", 45.75, -2), (SFX / "ding.mp3", 51.20, -10),
+    (SFX / "pop.mp3", 53.80, -2),
 ]
 MUSIC = REPO / "audio/uji/backsound-A-misteri-jenaka.mp3"
 
 inputs, chains, labels = [], [], []
-for i, t in enumerate(LINES):
-    inputs += ["-i", str(ROOT / f"audio/v1/L{i+1:02d}.mp3")]
+for i, (f, t) in enumerate(LINES):
+    inputs += ["-i", str(ROOT / f"audio/{f}.mp3")]
     ms = int(t * 1000)
     chains.append(f"[{i}]aresample=48000,adelay={ms}|{ms}[v{i}]"); labels.append(f"[v{i}]")
 n = len(LINES)

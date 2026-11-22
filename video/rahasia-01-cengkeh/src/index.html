@@ -8,20 +8,27 @@
 <script src="kit.js"></script>
 <script>
 // ===== Timeline (detik), diukur dari audio nyata audio/v1/L01..L10 =====
-const LINES=[
+const LINES=[ // kartu subtitle (s = mulai, d = lama tampil), mengikuti audio v1 + v2
  {s:0.30,d:3.71,t:'Pernah sadar nggak, kenapa klinik gigi<br>selalu bau cengkeh?'},
  {s:4.60,d:5.72,t:'Di akun ini, kita bongkar hal-hal yang<br>dokter gigi tahu, tapi jarang diceritakan.'},
  {s:10.60,d:4.05,t:'Rahasia nomor satu:<br>bau itu namanya eugenol.'},
  {s:14.95,d:3.71,t:'Sebagian besar isi minyak cengkeh,<br>ya si eugenol ini.'},
- {s:18.95,d:4.44,t:'Dokter gigi memakainya di bahan gigi,<br>misalnya tambalan sementara.'},
- {s:23.70,d:4.05,t:'Gunanya? Membantu menenangkan<br>saraf gigi yang lagi sensitif.'},
- {s:28.05,d:2.70,t:'Dan ini bukan barang baru.'},
- {s:30.75,d:4.22,t:'Minyak cengkeh sudah dipakai buat<br>sakit gigi sejak abad ke-16.'},
- {s:35.30,d:5.41,t:'Rahasia nomor dua lebih seram:<br>gigi palsu… dari gigi tentara.'},
- {s:41.05,d:2.04,t:'Follow biar nggak ketinggalan.'},
- {s:43.30,d:4.28,t:'Terus tulis di komen: rahasia dokter gigi<br>apa lagi yang pengen kamu tahu?'}];
-const SC=[0,4.2,10.45,14.8,18.8,23.55,27.9,35.15,40.9];
-const DURATION=49.0, STAMP1=4.42, STAMP2=37.55;
+ {s:18.95,d:2.40,t:'Kalau ada gigi berlubang<br>yang lagi nyeri,'},
+ {s:21.35,d:3.01,t:'dokter gigi meneteskan eugenol<br>ke kapas kecil.'},
+ {s:24.65,d:1.95,t:'Kapasnya dikeringkan sedikit,'},
+ {s:26.60,d:2.41,t:'lalu diletakkan<br>di dalam lubang gigi.'},
+ {s:29.30,d:2.77,t:'Setelah itu ditutup<br>tambalan sementara.'},
+ {s:32.07,d:2.48,t:'Eugenol membantu<br>meredakan nyerinya.'},
+ {s:34.85,d:1.58,t:'Nah, setiap kali dipakai,'},
+ {s:36.43,d:3.57,t:'aromanya menyebar<br>ke ruangan.'},
+ {s:40.00,d:1.85,t:'Itulah bau cengkeh<br>yang kamu cium.'},
+ {s:42.25,d:3.16,t:'Rahasia nomor dua?<br>Kamu yang tentukan.'},
+ {s:45.75,d:1.50,t:'Terus tulis di komen:'},
+ {s:47.25,d:2.78,t:'rahasia dokter gigi apa lagi<br>yang pengen kamu tahu?'},
+ {s:50.30,d:3.24,t:'Yang paling banyak diminta,<br>kita bongkar duluan.'},
+ {s:53.80,d:2.04,t:'Follow biar nggak ketinggalan.'}];
+const SC=[0,4.2,10.45,14.8,18.8,24.5,29.15,34.7,42.0,45.6];
+const DURATION=57.0, STAMP1=4.42, STAMP3=40.0, STAMP4=44.1;
 window.DURATION=DURATION;
 
 // ===== easing =====
@@ -68,42 +75,56 @@ lt=>`<div class="h2 abs" style="left:80px;right:140px;top:460px;opacity:${p(lt,0
   <g style="${draw(p(lt,2.0,0.35),160)}">${arrow(630,250,715)}</g>
   <g style="${pop(p(lt,2.4,0.3))};transform-origin:843px 248px;transform-box:view-box"><rect x="730" y="196" width="226" height="104" rx="22" fill="${C.or}"/><text x="843" y="264" class="label" style="font-weight:900">eugenol</text></g>
   <text x="190" y="530" class="label" opacity="${p(lt,0.5,.3)}">cengkeh</text><text x="530" y="530" class="label" opacity="${p(lt,1.4,.3)}">minyaknya</text></svg>`,
-// 5 tetes jatuh ke tambalan
-lt=>{const fall=p(lt,0.25,0.8), y=170+150*fall*fall, landed=lt>1.05;
- return `<div class="h2 abs" style="left:80px;right:140px;top:460px;opacity:${p(lt,0,.3)}">Dipakai di <span class="pill">bahan gigi</span></div>
+// 5 eugenol diteteskan ke kapas
+lt=>{const pip=o4(p(lt,0.1,0.6)), fall=p(lt,2.5,0.5), wet=o4(p(lt,3.0,0.5));
+ return `<div class="h2 abs" style="left:80px;right:140px;top:460px;opacity:${p(lt,0,.3)}">Diteteskan ke ${lt>2.6?`<span class="pill" style="display:inline-block;${pop(p(lt,2.6,.3))}">kapas</span>`:'<span style="opacity:0">kapas</span>'}</div>
+ <svg class="abs" style="left:0;top:700px" width="960" height="660">
+  <g transform="translate(470,${40-160*(1-pip)}) rotate(8)"><rect x="-22" y="0" width="44" height="210" rx="10" fill="#fff" stroke="${C.gelap}" stroke-width="7"/><rect x="-16" y="${120+40*fall}" width="32" height="${84-40*fall}" rx="6" fill="${C.amber}" opacity=".85"/><path d="M-8 208 L0 250 L8 208" fill="#fff" stroke="${C.gelap}" stroke-width="7" stroke-linejoin="round"/><rect x="-34" y="-110" width="68" height="120" rx="30" fill="${C.ortua}" stroke="${C.gelap}" stroke-width="7" style="transform:scaleY(${lt>2.3&&lt<2.6?0.88:1});transform-origin:0 -50px;transform-box:view-box"/></g>
+  ${lt>2.5&&lt<3.0?drop(440,330+140*fall*fall,.42):''}
+  <g transform="translate(450,470)"><g style="${pop(p(lt,0.3,.35))}"><path d="M-95 20 C-120 -15 -85 -55 -50 -45 C-40 -80 10 -85 25 -55 C60 -75 105 -45 92 -10 C125 5 110 55 70 52 C55 80 -5 82 -25 58 C-60 75 -110 55 -95 20Z" fill="#fff" stroke="${C.gelap}" stroke-width="7"/><ellipse cx="0" cy="10" rx="${60*wet}" ry="${26*wet}" fill="${C.amber}" opacity=".55"/></g></g>
+  <text x="450" y="620" class="label" opacity="${p(lt,0.8,.3)}">kapas kecil</text></svg>`;},
+// 6 kapas dikeringkan, masuk ke lubang gigi
+lt=>{const down=o4(p(lt,2.0,1.0)), sq=lt>0.6&&lt<1.6?0.82+0.18*Math.abs(Math.cos((lt-0.6)*Math.PI)):1;
+ const cy=170+152*down;
+ return `<div class="h2 abs" style="left:80px;right:140px;top:460px;opacity:${p(lt,0,.3)}">Diletakkan di ${lt>2.2?`<span class="pill" style="display:inline-block;${pop(p(lt,2.2,.3))}">lubang gigi</span>`:'<span style="opacity:0">lubang gigi</span>'}</div>
+ <svg class="abs" style="left:0;top:690px" width="960" height="680">
+  ${tooth(470,430,2.3,`<path d="M-30 -40 C-30 10 -22 60 -30 100 M30 -40 C30 10 22 60 30 100" stroke="${C.ortua}" stroke-width="5" fill="none" opacity=".5"/><path d="M-26 -62 L-18 -30 L18 -30 L26 -62 Z" fill="${C.krem}" stroke="${C.gelap}" stroke-width="5" stroke-linejoin="round"/>`)}
+  <g transform="translate(470,${cy})"><g style="transform:scaleY(${sq});transform-box:view-box"><path d="M-34 0 C-42 -22 -18 -38 0 -30 C18 -40 42 -22 34 0 C40 20 -40 20 -34 0Z" fill="#FFF3C4" stroke="${C.gelap}" stroke-width="6"/></g>
+   <g opacity="${1-p(lt,3.1,0.4)}"><path d="M-12 -32 L-60 -250 M12 -32 L60 -250" stroke="${C.gelap}" stroke-width="10" stroke-linecap="round"/></g></g>
+  <g opacity="${p(lt,0.2,.3)*(1-p(lt,2.0,.3))}"><text x="800" y="140" class="label" style="font-size:38px">dikeringkan</text><text x="800" y="184" class="label" style="font-size:38px">sedikit dulu</text></g></svg>`;},
+// 7 ditutup tambalan sementara, nyeri reda
+lt=>{const cap=o4(p(lt,0.3,0.5)), calm=p(lt,2.9,0.8), j=calm<1?Math.sin(lt*38)*3*(1-calm):0;
+ const nerve=calm<0.5?`<path transform="translate(${j},0)" d="M-10 -26 L4 -8 L-8 10 L6 28 L-8 46 L4 66" stroke="${C.or}" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="${1-calm*2}"/>`:`<path d="M0 -26 C-6 0 6 30 0 70" stroke="${C.or}" stroke-width="7" fill="none" stroke-linecap="round" opacity="${(calm-0.5)*2}"/>`;
+ return `<div class="h2 abs" style="left:80px;right:140px;top:460px">${lt<2.8?`<span style="opacity:${p(lt,0,.3)}">Ditutup <span class="pill">tambalan sementara</span></span>`:`<span style="opacity:${p(lt,2.8,.25)}">Membantu <span class="pill">meredakan nyeri</span></span>`}</div>
  <svg class="abs" style="left:0;top:740px" width="960" height="620">
-  ${!landed?drop(480,y,1.1-0.5*fall):''}
-  ${tooth(480,420,2.1,`<path d="M-38 -58 C-20 -40 20 -40 38 -58 L30 -20 C10 -8 -10 -8 -30 -20Z" fill="${C.amber}" stroke="${C.gelap}" stroke-width="5" style="transform:scaleY(${o4(p(lt,1.05,0.35))});transform-origin:0 -58px;transform-box:view-box"/>`)}
-  <g opacity="${p(lt,3.4,.3)}"><path d="M650 330 L700 300" stroke="${C.gelap}" stroke-width="6" stroke-linecap="round"/><text x="800" y="250" class="label" style="font-size:40px">tambalan</text><text x="800" y="298" class="label" style="font-size:40px">sementara</text></g></svg>`;},
-// 6 saraf sensitif -> tenang
-lt=>{const j=lt<1.6?Math.sin(lt*38)*4:0;
- const pulp=`<path d="M-30 -40 C-30 10 -22 60 -30 100 M30 -40 C30 10 22 60 30 100" stroke="${C.ortua}" stroke-width="7" fill="none" opacity=".5"/>`;
- return `<div class="h2 abs" style="left:80px;right:140px;top:460px;opacity:${p(lt,0.2,.3)}">Bikin saraf gigi <span class="pill">lebih tenang</span></div>
- <svg class="abs" style="left:0;top:760px" width="960" height="600">
-  ${tooth(250,300,1.7,pulp+`<path transform="translate(${j},0)" d="M-14 -30 L4 -10 L-12 10 L6 30 L-10 50 L6 70" stroke="${C.or}" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`)}
-  <g style="${draw(p(lt,1.2,0.4),200)}">${arrow(410,300,560)}</g>
-  <g opacity="${p(lt,1.5,.25)}">${tooth(720,300,1.7,pulp+`<path d="M0 -30 C-8 0 8 30 0 70" stroke="${C.or}" stroke-width="9" fill="none" stroke-linecap="round" style="${draw(p(lt,1.7,0.6),110)}"/>`)}</g>
-  <text x="250" y="560" class="label">sensitif</text><text x="720" y="560" class="label" opacity="${p(lt,2,.3)}">tenang</text></svg>`;},
-// 7 catatan sejarah
-lt=>{const k=o4(p(lt,0,0.5));
- return `<div class="abs" style="left:110px;right:170px;top:480px;height:800px;background:#F1DDBF;transform:translateX(${140*(1-k)}px) rotate(${-1.5-3*(1-k)}deg);opacity:${k};clip-path:polygon(0 2%,8% 0,22% 1.5%,40% 0,58% 1.2%,75% 0,92% 1.4%,100% 0,100% 98%,85% 100%,66% 98.5%,48% 100%,30% 98.6%,12% 100%,0 98%)"></div>
- <div class="abs" style="left:150px;right:210px;top:560px;opacity:${k}"><div class="typed" style="color:${C.coklat}">${typed('CATATAN SEJARAH',p(lt,0.3,0.6))}</div>
-  <div class="h2" style="margin-top:26px">${lt<2.85?`<span style="opacity:${p(lt,0.35,.3)}">Bukan <span class="pill">barang baru</span></span>`:`<span style="opacity:${p(lt,2.85,.25)}">Dipakai sejak</span><br>${lt>5.6?`<span class="pill" style="display:inline-block;${pop(p(lt,5.6,.3))}">abad ke-16</span>`:''}`}</div></div>
- <svg class="abs" style="left:110px;top:980px;opacity:${p(lt,3.3,.3)}" width="800" height="260">${clove(120,90,.5)}<path d="M200 120 H580" stroke="${C.coklat}" stroke-width="8" stroke-dasharray="2 22" stroke-linecap="round" style="clip-path:inset(0 ${100-100*p(lt,3.5,1.4)}% 0 0)"/>
-  <g opacity="${p(lt,4.7,.3)}">${tooth(660,110,.85)}</g>
-  <text x="120" y="250" class="label" style="font-size:38px">1500-an</text><text x="660" y="250" class="label" style="font-size:38px" opacity="${p(lt,4.7,.3)}">sekarang</text></svg>`;},
-// 8 teaser #02 + cap LEBIH SERAM
-lt=>{const k=o4(p(lt,0,0.5)), imp=STAMP2-SC[7], hit=lt>=imp;
- return `<div class="sc" style="transform:translateX(${400*(1-k)}px);opacity:${k}">${folderBlock('BERKAS #02',520,760)}
+  ${tooth(470,330,2.3,`<path d="M-30 -40 C-30 10 -22 60 -30 100 M30 -40 C30 10 22 60 30 100" stroke="${C.ortua}" stroke-width="5" fill="none" opacity=".5"/>${nerve}<path d="M-26 -62 L-18 -30 L18 -30 L26 -62 Z" fill="#FFF3C4" stroke="${C.gelap}" stroke-width="4"/><path d="M-14 -40 C-8 -46 8 -46 14 -40 C10 -34 -10 -34 -14 -40Z" fill="${C.amber}" opacity=".7"/><g transform="translate(0,${-40*(1-cap)})" opacity="${cap}"><path d="M-30 -66 C-12 -54 12 -54 30 -66 L26 -50 C10 -44 -10 -44 -26 -50Z" fill="#D9C7AE" stroke="${C.gelap}" stroke-width="4"/></g>`)}
+  <g opacity="${p(lt,0.9,.3)}"><path d="M545 190 L720 110" stroke="${C.gelap}" stroke-width="6" stroke-linecap="round"/><text x="800" y="100" class="label" style="font-size:38px">tambalan</text><text x="800" y="144" class="label" style="font-size:38px">sementara</text></g>
+  <g opacity="${p(lt,1.3,.3)}"><path d="M520 240 L720 300" stroke="${C.gelap}" stroke-width="6" stroke-linecap="round"/><text x="800" y="290" class="label" style="font-size:38px">kapas</text><text x="800" y="334" class="label" style="font-size:38px">+ eugenol</text></g></svg>`;},
+// 8 aroma menyebar, TERJAWAB
+lt=>{const W=[[470,440,.6,0.2],[330,470,.5,0.6],[610,470,.5,0.8],[200,520,.55,1.6],[760,520,.45,1.9],[400,330,.35,2.4],[560,320,.35,2.7]];
+ const imp=STAMP3-SC[7], hit=lt>=imp;
+ return `<div class="h2 abs" style="left:80px;right:140px;top:460px">${lt<imp-0.1?`<span style="opacity:${p(lt,0,.3)}">Aromanya <span class="pill">menyebar</span></span>`:`<span style="opacity:${p(lt,imp-0.1,.25)}">Itu bau yang <span class="pill">kamu cium</span></span>`}</div>
+ <svg class="abs" style="left:0;top:700px" width="960" height="700">
+  ${W.map(([x,y,o,t0])=>{const k=p(lt,t0,0.7);return `<g transform="translate(0,${-30*p(lt,t0,6)})" style="clip-path:inset(${100-100*k}% 0 0 0)">${wisp(x,y,o)}</g>`;}).join('')}
+  ${tooth(470,580,1.1)}</svg>
+ ${hit?`<div class="stamp" style="left:590px;top:1250px;font-size:46px;transform:rotate(-9deg) scale(${1+0.1*(1-p(lt,imp,0.15))})">TERJAWAB</div>`:''}`;},
+// 9 berkas #02: kamu yang tentukan
+lt=>{const imp=STAMP4-SC[8], hit=lt>=imp;
+ return `${folderBlock('BERKAS #02',520,760)}
  <div class="paper" style="left:120px;right:180px;top:580px;height:640px">
-  <div class="typed">RAHASIA #02</div><div class="h2" style="margin-top:30px">Gigi palsu dari ${lt>4.4?`<span class="pill" style="display:inline-block;${pop(p(lt,4.4,.3))}">gigi tentara</span>`:'<span style="opacity:.0">gigi tentara</span>'}</div></div>
- ${hit?`<div class="stamp" style="left:470px;top:1060px;font-size:62px;transform:rotate(-10deg) scale(${1+0.1*(1-p(lt,imp,0.15))})">LEBIH SERAM</div>`:''}</div>`;},
-// 9 CTA follow + komen
-lt=>{const t10=LINES[10].s-SC[8], nudge=lt>t10+0.6&&lt<t10+2.4?Math.max(0,Math.sin((lt-t10-0.6)*Math.PI*2/0.9))*26:0, hin=o4(p(lt,t10+0.2,0.45));
- return `<div class="h abs" style="left:80px;right:140px;top:470px">${lt>0.15?`<span class="pill" style="display:inline-block;${pop(p(lt,0.15,.3))}">Follow</span>`:''}<br><span style="opacity:${p(lt,0.5,.3)}">biar nggak ketinggalan</span></div>
- <div class="h2 abs" style="left:80px;top:830px;color:${C.ortua};opacity:${p(lt,t10+0.1,.3)}">Tulis di komen</div>
- <div class="cap abs" style="top:960px;opacity:${p(lt,t10+1.5,.3)}">Rahasia dokter gigi apa lagi yang mau kamu tahu?</div>
- <svg class="abs" style="left:${420-300*(1-hin)+nudge}px;top:1130px;opacity:${hin}" width="540" height="240" viewBox="-290 -120 500 240">${pointHand(0,0,.95)}</svg>`;}
+  <div class="typed">${typed('RAHASIA #02',p(lt,0.15,0.4))}</div>
+  <div style="font-weight:900;font-size:300px;line-height:1;color:${C.ortua};margin-top:10px;display:inline-block;${pop(p(lt,0.5,.35))};transform-origin:30% 60%">?</div></div>
+ ${hit?`<div class="stamp" style="left:330px;top:1020px;font-size:58px;transform:rotate(-8deg) scale(${1+0.1*(1-p(lt,imp,0.15))})">KAMU YANG<br>TENTUKAN</div>`:''}`;},
+// 10 CTA: tulis di komen, yang paling banyak diminta, follow
+lt=>{const tq=LINES[15].s-SC[9], tn=LINES[16].s-SC[9], tf=LINES[17].s-SC[9];
+ const hin=o4(p(lt,tq+0.3,0.45)), nudge=lt>tq+0.8&&lt<tq+2.6?Math.max(0,Math.sin((lt-tq-0.8)*Math.PI*2/0.9))*24:0;
+ return `<div class="h2 abs" style="left:80px;top:470px;color:${C.ortua};${pop(p(lt,0.15,.3))};transform-origin:0 50%">Tulis di komen</div>
+ <div class="cap abs" style="top:590px;opacity:${p(lt,tq,.3)}">Rahasia dokter gigi apa yang mau kamu bongkar?</div>
+ <div class="abs" style="left:80px;right:140px;top:760px;font-weight:800;font-size:40px;line-height:1.5;opacity:${p(lt,tn,.3)}">
+  <div class="typed" style="font-size:30px;margin-bottom:10px">${typed('YANG PALING BANYAK DIMINTA:',p(lt,tn,0.6))}</div>
+  ${lt>tn+0.9?`<span class="pill" style="display:inline-block;${pop(p(lt,tn+0.9,.3))}">dibongkar duluan</span>`:''}</div>
+ <div class="h abs" style="left:80px;top:1000px;font-size:80px;opacity:${p(lt,tf,.2)}">${lt>tf?`<span class="pill" style="display:inline-block;${pop(p(lt,tf,.3))}">Follow</span>`:''} biar nggak<br>ketinggalan</div>
+ <svg class="abs" style="left:${520-300*(1-hin)+nudge}px;top:1195px;opacity:${hin}" width="440" height="200" viewBox="-290 -120 500 240">${pointHand(0,0,.8)}</svg>`;}
 ];
 
 const CUTS=[1,2];

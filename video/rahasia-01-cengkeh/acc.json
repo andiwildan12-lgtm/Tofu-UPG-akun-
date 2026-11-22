@@ -1,9 +1,9 @@
 {
   "status": "ACC_PRODUKSI",
-  "version": "V1",
-  "draft_file": "rancangan-V1.md",
-  "draft_sha256": "d8d03629672f1b1295a6b89b80561417d3e674719c1a8e3b2e41ee2601e1a6d9",
-  "user_message": "Gas render",
-  "scope": "Produksi Rancangan V1 Rahasia #01 (naskah 10 baris, papan gambar V1 gaya C, tokoh varian 1 tangan, suara Dany take 2, backsound A, SFX). Tidak termasuk unggah.",
-  "recorded_at": "2026-11-21T14:27:31+00:00"
+  "version": "V2",
+  "draft_file": "rancangan-V2.md",
+  "draft_sha256": "a90564d93fc46bb0ee6258a9f80f72796ac8a1961a12e1dd04344c3c842936cc",
+  "user_message": "OK",
+  "scope": "Produksi Rancangan V2 Rahasia #01: 6 baris narasi baru (alur pemakaian eugenol + penutup interaktif), audio V1 dipakai ulang untuk baris yang tetap, papan gambar V2 + frame penutup baru. Jawaban atas 'Kalau sudah oke, balas gas render dan saya produksi V2.' Tidak termasuk unggah.",
+  "recorded_at": "2026-11-22T02:39:44+00:00"
 }

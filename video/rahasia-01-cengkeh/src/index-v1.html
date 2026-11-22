@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><title>Rahasia 01 Cengkeh</title>
+<link rel="stylesheet" href="kit.css">
+<style>
+.sc{position:absolute;inset:0;will-change:transform,opacity}
+.sub{transition:none}
+</style></head><body><div class="f" id="f"><img class="logo" src="logo-upg-transparan.png"><div id="stage"></div><div id="sub" class="sub"></div></div>
+<script src="kit.js"></script>
+<script>
+// ===== Timeline (detik), diukur dari audio nyata audio/v1/L01..L10 =====
+const LINES=[
+ {s:0.30,d:3.71,t:'Pernah sadar nggak, kenapa klinik gigi<br>selalu bau cengkeh?'},
+ {s:4.60,d:5.72,t:'Di akun ini, kita bongkar hal-hal yang<br>dokter gigi tahu, tapi jarang diceritakan.'},
+ {s:10.60,d:4.05,t:'Rahasia nomor satu:<br>bau itu namanya eugenol.'},
+ {s:14.95,d:3.71,t:'Sebagian besar isi minyak cengkeh,<br>ya si eugenol ini.'},
+ {s:18.95,d:4.44,t:'Dokter gigi memakainya di bahan gigi,<br>misalnya tambalan sementara.'},
+ {s:23.70,d:4.05,t:'Gunanya? Membantu menenangkan<br>saraf gigi yang lagi sensitif.'},
+ {s:28.05,d:2.70,t:'Dan ini bukan barang baru.'},
+ {s:30.75,d:4.22,t:'Minyak cengkeh sudah dipakai buat<br>sakit gigi sejak abad ke-16.'},
+ {s:35.30,d:5.41,t:'Rahasia nomor dua lebih seram:<br>gigi palsu… dari gigi tentara.'},
+ {s:41.05,d:2.04,t:'Follow biar nggak ketinggalan.'},
+ {s:43.30,d:4.28,t:'Terus tulis di komen: rahasia dokter gigi<br>apa lagi yang pengen kamu tahu?'}];
+const SC=[0,4.2,10.45,14.8,18.8,23.55,27.9,35.15,40.9];
+const DURATION=49.0, STAMP1=4.42, STAMP2=37.55;
+window.DURATION=DURATION;
+
+// ===== easing =====
+const cl=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const p=(t,s,d)=>cl((t-s)/d);
+const o4=k=>1-Math.pow(1-k,4), i4=k=>Math.pow(k,4);
+const back=k=>{const c=1.7;return 1+(c+1)*Math.pow(k-1,3)+c*Math.pow(k-1,2);};
+const typed=(str,k)=>str.slice(0,Math.round(str.length*cl(k)));
+const draw=(k,len=400)=>`stroke-dasharray:${len};stroke-dashoffset:${len*(1-cl(k))}`;
+const pop=(k)=>`transform:scale(${0.55+0.45*back(cl(k))});opacity:${cl(k*3)}`;
+
+// ===== adegan (lt = waktu lokal sejak awal adegan) =====
+const scenes=[
+// 1 HOOK: teks diketik, asap cengkeh naik
+lt=>{const q='Kenapa klinik gigi selalu bau ';
+ return `${folderBlock('BERKAS #01')}
+ <div class="paper" style="left:120px;right:180px;top:530px;height:720px">
+  <div class="typed" style="margin-bottom:22px">RAHASIA KURSI DOKTER GIGI</div>
+  <div class="h">${typed(q,p(lt,0,0.75))}${lt>0.75?`<span class="pill" style="display:inline-block;${pop(p(lt,0.75,0.3))}">cengkeh?</span>`:''}</div></div>
+ <svg class="abs" style="left:150px;top:1010px" width="620" height="230">
+  <g transform="translate(0,${-((lt*40)%30)})" opacity="${.5+.2*Math.sin(lt*3)}">${wisp(130,120,.6)}${wisp(230,130,.5)}</g>${clove(130,170,.55)}${clove(230,180,.5)}</svg>`;},
+// 2 STEMPEL: tangan turun, dug, kamera sedikit mendorong
+lt=>{const imp=STAMP1-SC[1], down=p(lt,0,imp), up=p(lt,imp+0.35,0.5);
+ const hy=-260*(1-o4(down))-220*o4(up), hit=lt>=imp;
+ const shake=hit&&lt<imp+0.12?Math.sin((lt-imp)*120)*5:0, push=1+0.035*p(lt,imp,5);
+ return `<div class="sc" style="transform:scale(${push}) translate(${shake}px,0);transform-origin:50% 45%">${folderBlock('BERKAS #01')}
+ ${hit?`<div class="stamp" style="left:190px;top:700px;font-size:74px;transform:rotate(-7deg) scale(${1+0.08*(1-p(lt,imp,0.15))})">RAHASIA KURSI<br>DOKTER GIGI</div>`:''}
+ <div class="cap" style="top:1000px;text-align:center;color:${C.coklat};opacity:${p(lt,imp+0.6,0.4)};transform:translateY(${16*(1-o4(p(lt,imp+0.6,0.4)))}px)">Yang dokter gigi tahu,<br>tapi jarang diceritakan</div></div>
+ <svg class="abs" style="left:300px;top:${520+hy}px;opacity:${1-p(lt,imp+0.6,0.3)}" width="400" height="360" viewBox="-160 -340 400 470">${stampHand(0,0,.8)}</svg>`;},
+// 3 TEMUAN #1
+lt=>{const up=o4(p(lt,0,0.45));
+ return `${folderBlock('BERKAS #01')}
+ <div class="paper" style="left:120px;right:180px;top:${530+120*(1-up)}px;height:720px">
+  <div class="typed">${typed('TEMUAN #1',p(lt,0.2,0.4))}</div>
+  <div class="h" style="margin-top:40px;opacity:${p(lt,1.9,0.25)}">Itu bau</div>
+  <div class="h" style="margin-top:8px">${lt>2.95?`<span class="pill" style="display:inline-block;${pop(p(lt,2.95,0.3))}">eugenol</span>`:''}</div>
+  <div class="typed" style="margin-top:60px;color:${C.gelap};font-size:30px">${typed('dibaca: eu-ge-nol',p(lt,3.3,0.6))}</div></div>`;},
+// 4 cengkeh -> minyak -> eugenol
+lt=>`<div class="h2 abs" style="left:80px;right:140px;top:460px;opacity:${p(lt,0,.3)}">Isi utama <span class="pill">minyak cengkeh</span></div>
+ <svg class="abs" style="left:0;top:760px" width="960" height="560">
+  <g style="${pop(p(lt,0.2,0.35))};transform-origin:190px 250px;transform-box:view-box">${clove(190,250,1)}</g>
+  <g style="${draw(p(lt,0.8,0.4),220)}">${arrow(290,250,420)}</g>
+  <g style="${pop(p(lt,1.15,0.35))};transform-origin:530px 260px;transform-box:view-box">${drop(530,260,1.5)}</g>
+  <g style="${draw(p(lt,2.0,0.35),160)}">${arrow(630,250,715)}</g>
+  <g style="${pop(p(lt,2.4,0.3))};transform-origin:843px 248px;transform-box:view-box"><rect x="730" y="196" width="226" height="104" rx="22" fill="${C.or}"/><text x="843" y="264" class="label" style="font-weight:900">eugenol</text></g>
+  <text x="190" y="530" class="label" opacity="${p(lt,0.5,.3)}">cengkeh</text><text x="530" y="530" class="label" opacity="${p(lt,1.4,.3)}">minyaknya</text></svg>`,
+// 5 tetes jatuh ke tambalan
+lt=>{const fall=p(lt,0.25,0.8), y=170+150*fall*fall, landed=lt>1.05;
+ return `<div class="h2 abs" style="left:80px;right:140px;top:460px;opacity:${p(lt,0,.3)}">Dipakai di <span class="pill">bahan gigi</span></div>
+ <svg class="abs" style="left:0;top:740px" width="960" height="620">
+  ${!landed?drop(480,y,1.1-0.5*fall):''}
+  ${tooth(480,420,2.1,`<path d="M-38 -58 C-20 -40 20 -40 38 -58 L30 -20 C10 -8 -10 -8 -30 -20Z" fill="${C.amber}" stroke="${C.gelap}" stroke-width="5" style="transform:scaleY(${o4(p(lt,1.05,0.35))});transform-origin:0 -58px;transform-box:view-box"/>`)}
+  <g opacity="${p(lt,3.4,.3)}"><path d="M650 330 L700 300" stroke="${C.gelap}" stroke-width="6" stroke-linecap="round"/><text x="800" y="250" class="label" style="font-size:40px">tambalan</text><text x="800" y="298" class="label" style="font-size:40px">sementara</text></g></svg>`;},
+// 6 saraf sensitif -> tenang
+lt=>{const j=lt<1.6?Math.sin(lt*38)*4:0;
+ const pulp=`<path d="M-30 -40 C-30 10 -22 60 -30 100 M30 -40 C30 10 22 60 30 100" stroke="${C.ortua}" stroke-width="7" fill="none" opacity=".5"/>`;
+ return `<div class="h2 abs" style="left:80px;right:140px;top:460px;opacity:${p(lt,0.2,.3)}">Bikin saraf gigi <span class="pill">lebih tenang</span></div>
+ <svg class="abs" style="left:0;top:760px" width="960" height="600">
+  ${tooth(250,300,1.7,pulp+`<path transform="translate(${j},0)" d="M-14 -30 L4 -10 L-12 10 L6 30 L-10 50 L6 70" stroke="${C.or}" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`)}
+  <g style="${draw(p(lt,1.2,0.4),200)}">${arrow(410,300,560)}</g>
+  <g opacity="${p(lt,1.5,.25)}">${tooth(720,300,1.7,pulp+`<path d="M0 -30 C-8 0 8 30 0 70" stroke="${C.or}" stroke-width="9" fill="none" stroke-linecap="round" style="${draw(p(lt,1.7,0.6),110)}"/>`)}</g>
+  <text x="250" y="560" class="label">sensitif</text><text x="720" y="560" class="label" opacity="${p(lt,2,.3)}">tenang</text></svg>`;},
+// 7 catatan sejarah
+lt=>{const k=o4(p(lt,0,0.5));
+ return `<div class="abs" style="left:110px;right:170px;top:480px;height:800px;background:#F1DDBF;transform:translateX(${140*(1-k)}px) rotate(${-1.5-3*(1-k)}deg);opacity:${k};clip-path:polygon(0 2%,8% 0,22% 1.5%,40% 0,58% 1.2%,75% 0,92% 1.4%,100% 0,100% 98%,85% 100%,66% 98.5%,48% 100%,30% 98.6%,12% 100%,0 98%)"></div>
+ <div class="abs" style="left:150px;right:210px;top:560px;opacity:${k}"><div class="typed" style="color:${C.coklat}">${typed('CATATAN SEJARAH',p(lt,0.3,0.6))}</div>
+  <div class="h2" style="margin-top:26px">${lt<2.85?`<span style="opacity:${p(lt,0.35,.3)}">Bukan <span class="pill">barang baru</span></span>`:`<span style="opacity:${p(lt,2.85,.25)}">Dipakai sejak</span><br>${lt>5.6?`<span class="pill" style="display:inline-block;${pop(p(lt,5.6,.3))}">abad ke-16</span>`:''}`}</div></div>
+ <svg class="abs" style="left:110px;top:980px;opacity:${p(lt,3.3,.3)}" width="800" height="260">${clove(120,90,.5)}<path d="M200 120 H580" stroke="${C.coklat}" stroke-width="8" stroke-dasharray="2 22" stroke-linecap="round" style="clip-path:inset(0 ${100-100*p(lt,3.5,1.4)}% 0 0)"/>
+  <g opacity="${p(lt,4.7,.3)}">${tooth(660,110,.85)}</g>
+  <text x="120" y="250" class="label" style="font-size:38px">1500-an</text><text x="660" y="250" class="label" style="font-size:38px" opacity="${p(lt,4.7,.3)}">sekarang</text></svg>`;},
+// 8 teaser #02 + cap LEBIH SERAM
+lt=>{const k=o4(p(lt,0,0.5)), imp=STAMP2-SC[7], hit=lt>=imp;
+ return `<div class="sc" style="transform:translateX(${400*(1-k)}px);opacity:${k}">${folderBlock('BERKAS #02',520,760)}
+ <div class="paper" style="left:120px;right:180px;top:580px;height:640px">
+  <div class="typed">RAHASIA #02</div><div class="h2" style="margin-top:30px">Gigi palsu dari ${lt>4.4?`<span class="pill" style="display:inline-block;${pop(p(lt,4.4,.3))}">gigi tentara</span>`:'<span style="opacity:.0">gigi tentara</span>'}</div></div>
+ ${hit?`<div class="stamp" style="left:470px;top:1060px;font-size:62px;transform:rotate(-10deg) scale(${1+0.1*(1-p(lt,imp,0.15))})">LEBIH SERAM</div>`:''}</div>`;},
+// 9 CTA follow + komen
+lt=>{const t10=LINES[10].s-SC[8], nudge=lt>t10+0.6&&lt<t10+2.4?Math.max(0,Math.sin((lt-t10-0.6)*Math.PI*2/0.9))*26:0, hin=o4(p(lt,t10+0.2,0.45));
+ return `<div class="h abs" style="left:80px;right:140px;top:470px">${lt>0.15?`<span class="pill" style="display:inline-block;${pop(p(lt,0.15,.3))}">Follow</span>`:''}<br><span style="opacity:${p(lt,0.5,.3)}">biar nggak ketinggalan</span></div>
+ <div class="h2 abs" style="left:80px;top:830px;color:${C.ortua};opacity:${p(lt,t10+0.1,.3)}">Tulis di komen</div>
+ <div class="cap abs" style="top:960px;opacity:${p(lt,t10+1.5,.3)}">Rahasia dokter gigi apa lagi yang mau kamu tahu?</div>
+ <svg class="abs" style="left:${420-300*(1-hin)+nudge}px;top:1130px;opacity:${hin}" width="540" height="240" viewBox="-290 -120 500 240">${pointHand(0,0,.95)}</svg>`;}
+];
+
+const CUTS=[1,2];
+const stage=document.getElementById('stage'), subEl=document.getElementById('sub');
+function sceneAt(i,t){const s=SC[i], e=i+1<SC.length?SC[i+1]:DURATION;
+ // masuk & keluar bertempo sama (partial travel), tanpa jeda kosong di sambungan
+ const CUT=[1,2]; // sambungan 0->1 dan 1->2 memakai map yang sama: potong langsung
+ const inK=(i===0||CUT.includes(i))?1:o4(p(t,s,0.32)), outK=i+1<SC.length?(CUT.includes(i+1)?(t>=e?1:0):i4(p(t,e,0.28))):0;
+ const x=90*(1-inK)-90*outK, op=Math.min(inK,1-outK);
+ return `<div class="sc" style="transform:translateX(${x}px);opacity:${op}">${scenes[i](t-s)}</div>`;}
+window.render=t=>{let h='';
+ for(let i=0;i<SC.length;i++){const s=SC[i], e=i+1<SC.length?SC[i+1]:DURATION; const tail=CUTS.includes(i+1)?0:0.28; if(t>=s-0.001&&t<e+tail) h+=sceneAt(i,t);}
+ stage.innerHTML=h;
+ const L=LINES.find(l=>t>=l.s-0.05&&t<l.s+l.d+0.15); subEl.innerHTML=L?L.t:'';};
+if(!navigator.webdriver){const t0=performance.now();(function loop(){render(((performance.now()-t0)/1000)%DURATION);requestAnimationFrame(loop);})();}
+</script></body></html>
