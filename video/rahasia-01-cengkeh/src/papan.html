@@ -158,6 +158,27 @@ const S={
  <svg class="abs" style="left:520px;top:1195px" width="440" height="200" viewBox="-290 -120 500 240">${pointHand(0,0,.8)}</svg>
  ${sub('Yang paling banyak diminta,<br>kita bongkar duluan.')}`
 
+,17:()=>`${logo}<div class="h2 abs" style="left:80px;right:140px;top:460px">Ditutup <span class="pill">tambalan sementara</span></div>
+ <svg class="abs" style="left:0;top:740px" width="960" height="620">
+  ${tooth(470,330,2.3,`<path d="M-30 -40 C-30 10 -22 60 -30 100 M30 -40 C30 10 22 60 30 100" stroke="${C.ortua}" stroke-width="5" fill="none" opacity=".5"/><path d="M-26 -62 L-18 -30 L18 -30 L26 -62 Z" fill="#FFF3C4" stroke="${C.gelap}" stroke-width="4"/><path d="M-14 -40 C-8 -46 8 -46 14 -40 C10 -34 -10 -34 -14 -40Z" fill="${C.amber}" opacity=".7"/><path d="M-30 -66 C-12 -54 12 -54 30 -66 L26 -50 C10 -44 -10 -44 -26 -50Z" fill="#D9C7AE" stroke="${C.gelap}" stroke-width="4"/>`)}
+  <path d="M545 190 L720 110" stroke="${C.gelap}" stroke-width="6" stroke-linecap="round"/><text x="800" y="100" class="label" style="font-size:38px">tambalan</text><text x="800" y="144" class="label" style="font-size:38px">sementara</text>
+  <path d="M520 240 L720 300" stroke="${C.gelap}" stroke-width="6" stroke-linecap="round"/><text x="800" y="290" class="label" style="font-size:38px">kapas</text><text x="800" y="334" class="label" style="font-size:38px">+ eugenol</text></svg>
+ ${sub('Kapas itu ditaruh di lubang gigi,<br>lalu ditutup tambalan sementara.')}`
+,18:()=>`${logo}<div class="h2 abs" style="left:80px;right:140px;top:460px">Cuma <span class="pill">pereda sementara</span></div>
+ <svg class="abs" style="left:0;top:760px" width="960" height="600">
+  ${tooth(250,300,1.6,`<path d="M-30 -66 C-12 -54 12 -54 30 -66 L26 -50 C10 -44 -10 -44 -26 -50Z" fill="#D9C7AE" stroke="${C.gelap}" stroke-width="5"/>`)}
+  ${arrow(400,300,560)}
+  ${tooth(720,300,1.6,`<path d="M-32 -66 C-14 -50 14 -50 32 -66 L28 -34 C10 -26 -10 -26 -28 -34Z" fill="#fff" stroke="${C.gelap}" stroke-width="5"/>`)}
+  <text x="250" y="540" class="label" style="font-size:38px">sementara</text><text x="720" y="540" class="label" style="font-size:38px">dirawat tuntas</text></svg>
+ ${sub('Tapi ingat,<br>ini cuma pereda sementara.')}`
+,19:()=>`${logo}${folderBlock('PERINGATAN',470,820)}
+ <div class="paper" style="left:120px;right:180px;top:530px;height:720px">
+  <div class="typed">CATATAN DOKTER GIGI</div>
+  <div class="h2" style="margin-top:34px">Jangan tetes<br>sendiri di rumah</div>
+  <div class="typed" style="margin-top:44px;color:${C.gelap};font-size:34px;line-height:1.5">Eugenol pekat bisa<br>melukai gusi.</div></div>
+ <div class="stamp" style="left:300px;top:1110px;font-size:54px;transform:rotate(-8deg)">JANGAN DICOBA<br>DI RUMAH</div>
+ ${sub('Jadi jangan coba tetes sendiri di rumah.<br>Eugenol pekat bisa melukai gusi.')}`
+
 };
 const n=new URLSearchParams(location.search).get('s')||'1';
 document.getElementById('root').innerHTML=`<div class="f">${S[n]()}</div>`;
