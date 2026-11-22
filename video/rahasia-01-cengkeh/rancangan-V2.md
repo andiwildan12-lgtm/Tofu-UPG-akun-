@@ -11,11 +11,12 @@ Revisi atas permintaan Dir (22 Nov 2026): pesan "eugenol dipakai untuk apa" belu
 6               Kapasnya dikeringkan sedikit, lalu diletakkan di dalam lubang gigi.  (BARU)
 7               Setelah itu ditutup tambalan sementara. Eugenol membantu meredakan nyerinya.   (BARU)
 8  [chuckles]   Nah, setiap kali dipakai, aromanya menyebar ke ruangan. Itulah bau cengkeh yang kamu cium.   (BARU)
-9  [teasing]    Rahasia nomor dua lebih seram: gigi palsu… dari gigi tentara.        (V1 L08)
-10              Follow biar nggak ketinggalan.                                       (V1 L09)
-11 [warmly]     Terus tulis di komen: rahasia dokter gigi apa lagi yang pengen kamu tahu?   (V1 L10)
+9  [teasing]    Rahasia nomor dua? Kamu yang tentukan.                               (BARU)
+10 [warmly]     Terus tulis di komen: rahasia dokter gigi apa lagi yang pengen kamu tahu?   (V1 L10)
+11 [playfully]  Yang paling banyak diminta, kita bongkar duluan.                     (BARU)
+12              Follow biar nggak ketinggalan.                                       (V1 L09)
 
-Dihapus dari V1: "Dokter gigi memakainya di bahan gigi…", "Gunanya? Membantu menenangkan saraf…", "Dan ini bukan barang baru… abad keenam belas."
+Dihapus dari V1: "Dokter gigi memakainya di bahan gigi…", "Gunanya? Membantu menenangkan saraf…", "Dan ini bukan barang baru… abad keenam belas.", dan teaser "Rahasia nomor dua lebih seram: gigi palsu…" (Dir: jangan umumkan topik berikutnya, biar penonton yang menentukan).
 
 ## Storyboard
 | # | Visual | Teks layar |
@@ -25,9 +26,12 @@ Dihapus dari V1: "Dokter gigi memakainya di bahan gigi…", "Gunanya? Membantu m
 | 6 | Kapas (dikeringkan sedikit) dibawa pinset ke lubang di potongan gigi | Diletakkan di [lubang gigi] |
 | 7 | Tambalan sementara menutup lubang berisi kapas + eugenol; saraf tenang | Ditutup, lalu [meredakan nyeri] |
 | 8 | Aroma dari gigi menyebar ke seluruh layar; stempel TERJAWAB | Itu bau yang [kamu cium] |
-| 9–10 | Sama dengan V1 (teaser #02, CTA follow + komen) | sama |
+| 9 | Map BERKAS #02 berisi tanda tanya besar, stempel KAMU YANG TENTUKAN | RAHASIA #02 · ? |
+| 10 | Tulis di komen + pertanyaan, "yang paling banyak diminta: dibongkar duluan", Follow; tangan menunjuk ke tombol komentar | Tulis di komen · [Follow] biar nggak ketinggalan |
 
 Subtitle maks. 2 baris; baris narasi panjang dipecah jadi dua kartu. Papan: `papan-gambar-V2.jpg`.
 
 ## Caption
+Komentar tersemat (diganti): "Rahasia #02 kalian yang pilih. Mau dibongkar yang mana: kenapa gigi ngilu kena es, kenapa bibir terasa tebal habis dibius, atau gigi yang dicabut dibuang ke mana? Atau usul sendiri di sini."
+
 Tidak berubah dari V1 (`out/caption.txt`), kecuali kalimat pertama: "Bau cengkeh di klinik gigi itu ada alasannya: eugenol, yang dipakai dokter gigi untuk meredakan nyeri gigi berlubang."

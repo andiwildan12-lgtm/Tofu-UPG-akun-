@@ -27,6 +27,7 @@ Hanya keputusan yang sudah disetujui Dir, dengan kutipan dan tanggal.
 | Gaya suara Dany | **Take 2** (`audio/uji/uji-suara-dany-take2.mp3`), eleven_v4 dengan tag emosi | Dir: "take 2" (21 Nov 2026) |
 
 | CTA penutup | **Setiap video** ditutup dengan ajakan **follow + komen** (mis. "rahasia apa lagi yang mau kamu tahu?" / "menurutmu gimana?"), supaya tim bisa berinteraksi dengan yang berkomentar. Menggantikan aturan panduan "1 ajakan" untuk akun ini | Dir: "jangan lupa selalu di akhir ada CTA, follow, komen…" (21 Nov 2026) |
+| Penutup interaktif | **Jangan mengumumkan topik video berikutnya.** Tutup dengan meminta penonton memilih/usul topik di komen ("kamu yang tentukan"), lalu follow. Komentar tersemat memberi 2–3 pilihan dari bank topik agar mudah dijawab | Dir: "Jangan ada bahasa kita mau bahas Gipal, jadi ada interaksi dengan penonton" (22 Nov 2026) |
 | Video pertama | Sekaligus memperkenalkan akun | Dir (21 Nov 2026) |
 
 ## Belum diputuskan

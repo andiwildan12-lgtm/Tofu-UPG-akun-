@@ -143,6 +143,21 @@ const S={
  <div class="stamp" style="left:590px;top:1250px;font-size:46px;transform:rotate(-9deg)">TERJAWAB</div>
  ${sub('Nah, setiap kali dipakai,<br>aromanya menyebar ke ruangan.')}`
 
+,15:()=>`${logo}${folderBlock('BERKAS #02',520,760)}
+ <div class="paper" style="left:120px;right:180px;top:580px;height:640px">
+  <div class="typed">RAHASIA #02</div>
+  <div style="font-weight:900;font-size:300px;line-height:1;color:${C.ortua};margin-top:10px">?</div></div>
+ <div class="stamp" style="left:330px;top:1020px;font-size:58px;transform:rotate(-8deg)">KAMU YANG<br>TENTUKAN</div>
+ ${sub('Rahasia nomor dua?<br>Kamu yang tentukan.')}`
+,16:()=>`${logo}<div class="h2 abs" style="left:80px;top:470px;color:${C.ortua}">Tulis di komen</div>
+ <div class="cap abs" style="top:590px">Rahasia dokter gigi apa yang mau kamu bongkar?</div>
+ <div class="abs" style="left:80px;right:140px;top:760px;font-weight:800;font-size:40px;line-height:1.5">
+  <div class="typed" style="font-size:30px;margin-bottom:10px">YANG PALING BANYAK DIMINTA:</div>
+  <span class="pill">dibongkar duluan</span></div>
+ <div class="h abs" style="left:80px;top:1000px;font-size:80px"><span class="pill">Follow</span> biar nggak<br>ketinggalan</div>
+ <svg class="abs" style="left:520px;top:1195px" width="440" height="200" viewBox="-290 -120 500 240">${pointHand(0,0,.8)}</svg>
+ ${sub('Yang paling banyak diminta,<br>kita bongkar duluan.')}`
+
 };
 const n=new URLSearchParams(location.search).get('s')||'1';
 document.getElementById('root').innerHTML=`<div class="f">${S[n]()}</div>`;
